@@ -1,21 +1,18 @@
 ## Description
 
-[Please include a brief description of the changes or features added]
+<!--Please include a brief description of the changes or features added-->
 
 ## Related Issues
 
-[Cite any related issue(s) this pull request addresses. If none, simply state “None”]
+<!--Cite any related issue(s) this pull request addresses. If none, simply state “None”-->
 - Closes #
 
 ## Type of PR
+<!-- Mention PR Type Bug fix , Feature enhancement , Documentation update according to the issue in this section -->
 
-- [ ] Bug fix
-- [ ] Feature enhancement
-- [ ] Documentation update
-- [ ] Other (specify): _______________
 
 ## Screenshots / videos (if applicable)
-[Attach any relevant screenshots or videos demonstrating the changes]
+<!--Attach any relevant screenshots or videos demonstrating the changes-->
 
 
 ## Checklist
@@ -29,4 +26,4 @@
 <!-- [X] - put a cross/X inside [] to check the box -->
 
 ## Additional context:
-[Include any additional information or context that might be helpful for reviewers.]
+<!--Include any additional information or context that might be helpful for reviewers.-->
