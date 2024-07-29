@@ -1,4 +1,4 @@
-<!-- ISSUE & PR TITLE SHOULD BE SAME->
+<!-- ISSUE & PR TITLE SHOULD BE SAME-->
 ## Description
 <!--Please include a brief description of the changes or features added-->
 
@@ -9,8 +9,8 @@
 - Closes #
 
 ## Type of PR
-<!-- Mention PR Type Bug fix , Feature enhancement , Documentation update according to the issue in this section -->
-
+<!-- Mention PR Type Bug fix , Feature enhancement , Documentation update according to the issue in brackets below and check the below box -->
+- [ ] ()
 
 ## Screenshots / videos (if applicable)
 <!--Attach any relevant screenshots or videos demonstrating the changes-->
