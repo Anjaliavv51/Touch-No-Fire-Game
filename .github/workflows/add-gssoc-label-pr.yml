@@ -2,7 +2,7 @@ name: Auto Label PR
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize,,edited]
+    types: [opened, reopened, synchronize,edited]
 
 jobs:
   label_pr:
