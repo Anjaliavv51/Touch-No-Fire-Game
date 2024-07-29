@@ -1,6 +1,6 @@
 name: ✨ Feature Request
 description: Suggest a feature
-title: "✨[Feature Request]: "
+title: "✨[feature Request]: "
 body:
   - type: checkboxes
     id: existing-issue
