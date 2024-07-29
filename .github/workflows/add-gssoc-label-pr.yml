@@ -7,17 +7,16 @@ on:
 jobs:
   label_pr:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
       - name: Label PR
         uses: actions/github-script@v6
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const pr = context.payload.pull_request;
-            const prBody = pr.body.toLowerCase();
+            const prBody = pr.body ? pr.body.toLowerCase() : '';
             const prTitle = pr.title.toLowerCase();
             
             // Add gssoc label to all PRs
@@ -28,32 +27,26 @@ jobs:
               labels: ['gssoc']
             });
             
-            // Check for documentation changes
-            if (prBody.includes('documentation') || prTitle.includes('doc') || prBody.includes('readme')) {
+            const addLabel = async (label) => {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: pr.number,
-                labels: ['documentation']
+                labels: [label]
               });
+            };
+            
+            // Check for documentation changes
+            if (prBody.includes('documentation') || prTitle.includes('doc') || prBody.includes('readme')) {
+              await addLabel('documentation');
             }
             
             // Check for enhancements
             if (prBody.includes('feature') || prBody.includes('enhancement') || prTitle.includes('add') || prTitle.includes('implement')) {
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: pr.number,
-                labels: ['enhancement']
-              });
+              await addLabel('enhancement');
             }
             
             // Check for bugs
             if (prBody.includes('bug') || prBody.includes('fix') || prTitle.includes('fix') || prTitle.includes('resolve')) {
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: pr.number,
-                labels: ['bug']
-              });
+              await addLabel('bug');
             }
