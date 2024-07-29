@@ -2,52 +2,55 @@ name: Auto Label Issues
 
 on:
   issues:
-    types: [opened, edited]
+    types: [opened, reopened]
 
 jobs:
   auto-label:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/github-script@v6
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Apply GSSoC label
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.name,
+              labels: ['GSSoC']
+            })
+
+      - name: Categorize issue
+        uses: actions/github-script@v6
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const issue = context.payload.issue;
+            const title = issue.title.toLowerCase();
             const body = issue.body.toLowerCase();
             
-            // Add GSSoC label to all issues
-            await github.rest.issues.addLabels({
-              issue_number: issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: ['gssoc']
-            });
+            let labels = [];
             
-            // Check for specific keywords and add corresponding labels
-            if (body.includes('documentation') || body.includes('docs')) {
-              await github.rest.issues.addLabels({
-                issue_number: issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                labels: ['documentation']
-              });
+            if (title.includes('doc') || body.includes('doc') || title.includes('readme') || body.includes('readme')) {
+              labels.push('documentation');
             }
             
-            if (body.includes('enhancement') || body.includes('feature')) {
-              await github.rest.issues.addLabels({
-                issue_number: issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                labels: ['enhancement']
-              });
+            if (title.includes('feature') || body.includes('feature') || title.includes('enhance') || body.includes('enhance')) {
+              labels.push('enhancement');
             }
             
-            if (body.includes('bug') || body.includes('error') || body.includes('problem')) {
-              await github.rest.issues.addLabels({
-                issue_number: issue.number,
+            if (title.includes('bug') || body.includes('bug') || title.includes('fix') || body.includes('fix')) {
+              labels.push('bug');
+            }
+            
+            if (labels.length > 0) {
+              github.rest.issues.addLabels({
+                issue_number: context.issue.number,
                 owner: context.repo.owner,
-                repo: context.repo.repo,
-                labels: ['bug']
+                repo: context.repo.name,
+                labels: labels
               });
             }
