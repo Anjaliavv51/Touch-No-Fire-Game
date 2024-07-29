@@ -18,15 +18,6 @@ jobs:
             const issue = context.payload.issue;
             const issueBody = issue.body ? issue.body.toLowerCase() : '';
             const issueTitle = issue.title.toLowerCase();
-            
-            // Add gssoc label to all issues
-            await github.rest.issues.addLabels({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: issue.number,
-              labels: ['gssoc']
-            });
-            
             const addLabel = async (label) => {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
@@ -35,18 +26,18 @@ jobs:
                 labels: [label]
               });
             };
-            
-            // Check for documentation changes
             if (issueBody.includes('documentation') || issueTitle.includes('doc') || issueBody.includes('readme')) {
               await addLabel('documentation');
             }
             
-            // Check for enhancements
             if (issueBody.includes('feature') || issueBody.includes('enhancement') || issueTitle.includes('add') || issueTitle.includes('implement')) {
               await addLabel('enhancement');
+
             }
-            
-            // Check for bugs
             if (issueBody.includes('bug') || issueBody.includes('fix') || issueTitle.includes('fix') || issueTitle.includes('resolve')) {
               await addLabel('bug');
+            }
+
+            if (prBody.includes('gssoc')) {
+              await addLabel('gssoc');
             }
