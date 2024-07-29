@@ -26,7 +26,6 @@ jobs:
               issue_number: issue.number,
               labels: ['gssoc']
             });
-
             const addLabel = async (label) => {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
@@ -38,8 +37,10 @@ jobs:
             if (issueBody.includes('documentation') || issueTitle.includes('doc') || issueBody.includes('readme')) {
               await addLabel('documentation');
             }
+            
             if (issueBody.includes('feature') || issueBody.includes('enhancement') || issueTitle.includes('add') || issueTitle.includes('implement')) {
               await addLabel('enhancement');
+
             }
             if (issueBody.includes('bug') || issueBody.includes('fix') || issueTitle.includes('fix') || issueTitle.includes('resolve')) {
               await addLabel('bug');
