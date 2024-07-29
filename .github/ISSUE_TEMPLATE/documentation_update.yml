@@ -1,6 +1,6 @@
 name: 📝 Documentation Update
 description: Improve Documentation
-title: "📝[Documentation Update]: "
+title: "📝[documentation Update]: "
 body:
   - type: checkboxes
     id: existing-issue
