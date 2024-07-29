@@ -1,6 +1,6 @@
 ## Description
-
 <!--Please include a brief description of the changes or features added-->
+
 
 ## Related Issues
 
@@ -16,14 +16,14 @@
 
 
 ## Checklist
-
-- [ ] I have gone through the [contributing guide](https://github.com/Anishkagupta04/RAPIDOC-HEALTHCARE-WEBSITE-/)
+<!-- [X] - put a cross/X inside [] to check the box -->
+- [ ] I have gone through the [contributing guide](https://github.com/Anjaliavv51/Touch-No-Fire-Game/)
 - [ ] I have updated my branch and synced it with project `main` branch before making this PR
 - [ ] I have performed a self-review of my code
 - [ ] I have tested the changes thoroughly before submitting this pull request.
 - [ ] I have provided relevant issue numbers, screenshots, and videos after making the changes.
 - [ ] I have commented my code, particularly in hard-to-understand areas.
-<!-- [X] - put a cross/X inside [] to check the box -->
+
 
 ## Additional context:
 <!--Include any additional information or context that might be helpful for reviewers.-->
