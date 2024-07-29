@@ -2,7 +2,7 @@ name: Auto Label Issues
 
 on:
   issues:
-    types: [opened, reopened]
+    types: [opened, reopened,edited]
 
 jobs:
   auto-label:
