@@ -19,6 +19,14 @@ jobs:
             const prBody = pr.body ? pr.body.toLowerCase() : '';
             const prTitle = pr.title.toLowerCase();
             
+            // Add gssoc label to all PRs
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              labels: ['gssoc']
+            });
+
             const addLabel = async (label) => {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
