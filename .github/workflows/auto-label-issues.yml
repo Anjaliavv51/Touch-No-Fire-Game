@@ -1,56 +1,52 @@
-name: Auto Label Issues
+name: Auto Label Issue
 
 on:
   issues:
-    types: [opened, reopened,edited]
+    types: [opened, reopened, edited]
 
 jobs:
-  auto-label:
+  label_issue:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Apply GSSoC label
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.rest.issues.addLabels({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.name,
-              labels: ['GSSoC']
-            })
-
-      - name: Categorize issue
+      - name: Label Issue
         uses: actions/github-script@v6
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const issue = context.payload.issue;
-            const title = issue.title.toLowerCase();
-            const body = issue.body.toLowerCase();
+            const issueBody = issue.body ? issue.body.toLowerCase() : '';
+            const issueTitle = issue.title.toLowerCase();
             
-            let labels = [];
+            // Add gssoc label to all issues
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              labels: ['gssoc']
+            });
             
-            if (title.includes('doc') || body.includes('doc') || title.includes('readme') || body.includes('readme')) {
-              labels.push('documentation');
-            }
-            
-            if (title.includes('feature') || body.includes('feature') || title.includes('enhance') || body.includes('enhance')) {
-              labels.push('enhancement');
-            }
-            
-            if (title.includes('bug') || body.includes('bug') || title.includes('fix') || body.includes('fix')) {
-              labels.push('bug');
-            }
-            
-            if (labels.length > 0) {
-              github.rest.issues.addLabels({
-                issue_number: context.issue.number,
+            const addLabel = async (label) => {
+              await github.rest.issues.addLabels({
                 owner: context.repo.owner,
-                repo: context.repo.name,
-                labels: labels
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: [label]
               });
+            };
+            
+            // Check for documentation changes
+            if (issueBody.includes('documentation') || issueTitle.includes('doc') || issueBody.includes('readme')) {
+              await addLabel('documentation');
+            }
+            
+            // Check for enhancements
+            if (issueBody.includes('feature') || issueBody.includes('enhancement') || issueTitle.includes('add') || issueTitle.includes('implement')) {
+              await addLabel('enhancement');
+            }
+            
+            // Check for bugs
+            if (issueBody.includes('bug') || issueBody.includes('fix') || issueTitle.includes('fix') || issueTitle.includes('resolve')) {
+              await addLabel('bug');
             }
