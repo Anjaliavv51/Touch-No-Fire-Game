@@ -9,7 +9,7 @@
 - Closes #
 
 ## Type of PR
-<!-- Mention PR Type Bug fix , Feature enhancement , Documentation update according to the issue in brackets below and check the below box -->
+<!-- Mention PR Type according to the issue in brackets below and check the below box -->
 - [ ] ()
 
 ## Screenshots / videos (if applicable)
