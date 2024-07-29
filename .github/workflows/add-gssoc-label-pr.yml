@@ -2,7 +2,7 @@ name: Auto Label PR
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize,edited]
+    types: [opened, reopened, synchronize]
 
 jobs:
   label_pr:
@@ -19,14 +19,6 @@ jobs:
             const prBody = pr.body ? pr.body.toLowerCase() : '';
             const prTitle = pr.title.toLowerCase();
             
-            // Add gssoc label to all PRs
-            await github.rest.issues.addLabels({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: pr.number,
-              labels: ['gssoc']
-            });
-            
             const addLabel = async (label) => {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
@@ -35,18 +27,19 @@ jobs:
                 labels: [label]
               });
             };
-            
-            // Check for documentation changes
+
             if (prBody.includes('documentation') || prTitle.includes('doc') || prBody.includes('readme')) {
               await addLabel('documentation');
             }
-            
-            // Check for enhancements
+
             if (prBody.includes('feature') || prBody.includes('enhancement') || prTitle.includes('add') || prTitle.includes('implement')) {
               await addLabel('enhancement');
             }
             
-            // Check for bugs
             if (prBody.includes('bug') || prBody.includes('fix') || prTitle.includes('fix') || prTitle.includes('resolve')) {
               await addLabel('bug');
+            }
+
+            if (prBody.includes('gssoc')) {
+              await addLabel('gssoc');
             }
