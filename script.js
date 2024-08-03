@@ -153,8 +153,6 @@ if (!gameActive) foodfun();
 
 }
 
-
-
   function enemyMove() {
     if (!gameActive) return;
     for (const enemy of enemies) {
