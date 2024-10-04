@@ -25,16 +25,16 @@
     const para = document.getElementById("para");
     event.preventDefault();
 
-    if (event.key === "ArrowUp") {
+    if (event.key === "ArrowUp" || event.key==="W" || event.key==="w") {
       h3.innerHTML = "&#128513";
       y = Math.max(y - 10, 0);
-    } else if (event.key === "ArrowDown") {
+    } else if (event.key === "ArrowDown" || event.key==="S" || event.key==="s") {
       h3.innerHTML = "&#128513";
       y = Math.min(y + 10, maxHeight);
-    } else if (event.key === "ArrowLeft") {
+    } else if (event.key === "ArrowLeft" || event.key==="a" || event.key==="A") {
       h3.innerHTML = "&#128513";
       x = Math.max(x - 10, 0);
-    } else if (event.key === "ArrowRight") {
+    } else if (event.key === "ArrowRight" || event.key==="D" || event.key==="d") {
       h3.innerHTML = "&#128513";
       x = Math.min(x + 10, maxWidth);
     } else {
