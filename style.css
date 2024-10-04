@@ -1,59 +1,114 @@
-/* styles.css */
+/* Improved styles.css */
+
+body {
+  background-color: #f0e6d2;
+  background-repeat: no-repeat;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
 #head {
-    font-size: 2em;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
+  font-size: 2.5em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ff6b6b;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+#container {
+  width: 80%;
+  height: 60vh;
+  border: 5px solid #4ecdc4;
+  border-radius: 15px;
+  position: relative;
+  background-color: #ffffff;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+#mover {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+#h3 {
+  font-size: 2.5em;
+  position: absolute;
+  margin: 0;
+}
+
+#food {
+  font-size: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+
+.enemy {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 2s linear;
+  font-size: 2.5em;
+}
+
+#paragraph {
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 20px;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+  max-width: 80%;
+  line-height: 1.6;
+}
+
+#paragraph br {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
   #container {
-    width: 50%;
-    height: 50vh;
-    border: 3px solid black;
-    position: relative;
+      width: 90%;
+      height: 50vh;
   }
-  
-  #mover {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0px;
+
+  #head {
+      font-size: 2em;
   }
-  
-  #h3 {
-    font-size: 2em;
-    position: absolute;
-    margin: 0px;
-  }
-  
-  #food {
-    font-size: 2em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-  }
-  
-  .enemy {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 2s linear;
-  }
-  
-  body {
-    background-color: blanchedalmond;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-  }
-  
+
   #paragraph {
-    font-size: 1.2em;
-    text-align: center;
-    margin-top: 20px;
+      font-size: 1em;
   }
+}
+.parabox {
+  box-shadow: 0 10px 10px 0 rgb(0, 0, 0);
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #ffffff;
+  margin-top: 20px;
+  max-width: 80%;
+}
+
+#paragraph {
+  font-size: 1.2em;
+  text-align: left;
+  margin: 0;
+  line-height: 1.6;
+}
+
+#paragraph br {
+  margin-bottom: 10px;
+}
