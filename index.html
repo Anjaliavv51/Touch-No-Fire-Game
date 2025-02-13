@@ -16,17 +16,30 @@
     <div id="food">&#127828</div>
     <div class="enemy">&#128293</div>
   </div>
+
+  <div id="score">Score: 0</div>
+
   <div class="parabox"> 
     <p id="paragraph">
       Game Rules!<br>
-      * Eat the food to gain score<br>
-      * Do not touch the fire<br>
-      * The fire multiplies once with even scores<br>
-      * If you stay idle, the fire won't do anything<br>
-      * Do not touch the moving fire<br>
-      * Please play using arrow keys<br>
+      1. Eat the food to gain score<br>
+      2. Do not touch the fire<br>
+      3. The fire multiplies once with even scores<br>
+      4. If you stay idle, the fire won't do anything<br>
+      5. Do not touch the moving fire<br>
+      6. Please play using arrow keys<br>
     </p>
   </div>
+
+  <!-- Game Over Screen (Initially Hidden) -->
+  <div id="gameOverScreen">
+    <div id="gameOverContent">
+      <h2>Game Over</h2>
+      <h3 id="finalScore"></h3>
+      <button id="replayBtn" onclick="window.location.reload()">Replay</button>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
