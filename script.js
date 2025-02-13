@@ -86,7 +86,7 @@
   count++;
   h3.innerHTML = "&#128523";
   console.log("your score is " + count);
-
+  document.querySelector('#score-board').innerHTML = `Score : ${count}`
   if (count % 2 === 0) {
     const newEnemy = document.createElement("div");
     newEnemy.className = "enemy";
@@ -125,33 +125,55 @@ if (!gameActive) foodfun();
   }
 
   function end() {
-  console.log("game over");
-  gameActive = false;
-  container.style.display = 'flex';
-  container.style.flexDirection = 'column';
-  container.style.alignItems = 'center';
-  container.style.justifyContent = 'center';
+    console.log("game over");
+    gameActive = false;
   
-  const gameOverText = document.createElement('span');
-  gameOverText.style.fontWeight = 'bold';
-  gameOverText.textContent = 'Game Over';
-  container.appendChild(gameOverText);
+    // Create an overlay div
+    const overlay = document.createElement('div');
+    overlay.style.position = 'absolute';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.margin = 'auto';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)'; // Dark semi-transparent background
+    overlay.style.display = 'flex';
+    overlay.style.flexDirection = 'column';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.style.color = 'white';
+    overlay.style.fontSize = '24px';
+    overlay.style.zIndex = '999'; // Make sure it appears above everything
   
-  const scoreText = document.createElement('span');
-  scoreText.style.fontWeight = 'bold';
-  scoreText.textContent = 'Your Score: ' + count;
-  container.appendChild(scoreText);
+    // Game Over text
+    const gameOverText = document.createElement('span');
+    gameOverText.style.fontWeight = 'bold';
+    gameOverText.textContent = 'Game Over';
+    overlay.appendChild(gameOverText);
   
-  const replayButton = document.createElement('button');
-  replayButton.style.fontWeight = 'bold';
-  replayButton.textContent = 'Replay';
-  replayButton.addEventListener('click', () => {
-    location.reload();
-  });
-  container.appendChild(replayButton);
-
-
-}
+    // Score text
+    const scoreText = document.createElement('span');
+    scoreText.style.fontWeight = 'bold';
+    scoreText.textContent = 'Your Score: ' + count;
+    overlay.appendChild(scoreText);
+  
+    // Replay button
+    const replayButton = document.createElement('button');
+    replayButton.style.fontWeight = 'bold';
+    replayButton.style.padding = '10px 20px';
+    replayButton.style.marginTop = '10px';
+    replayButton.style.fontSize = '18px';
+    replayButton.textContent = 'Replay';
+    replayButton.addEventListener('click', () => {
+      location.reload();
+    });
+  
+    overlay.appendChild(replayButton);
+  
+    // Append overlay to the container
+    container.appendChild(overlay);
+  }
+  
 
   function enemyMove() {
     if (!gameActive) return;
