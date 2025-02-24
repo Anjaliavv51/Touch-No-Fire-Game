@@ -120,12 +120,21 @@ body {
   }
 
 .parabox {
+  /* display: flex; */
   box-shadow: 0 10px 10px 0 rgb(0, 0, 0);
   border-radius: 10px;
   padding: 20px;
   background-color: #ffffff;
   margin-top: 20px;
   max-width: 80%;
+}
+#score-board{
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+  background: linear-gradient(45deg, #00c6ff, #0072ff, #00c6ff);
+  border-radius: 1rem;
+  padding: 1rem;
 }
 
 #paragraph {
